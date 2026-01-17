@@ -12,7 +12,9 @@ import {
   X,
   TrendingUp,
   Activity,
-  Award
+  Award,
+  Heart,
+  Star
 } from 'lucide-react';
 
 // --- Types & Mock Data (Simulant le Google Sheet) ---
@@ -60,8 +62,9 @@ const Navbar = ({ activeTab, setActiveTab, isMobileMenuOpen, setIsMobileMenuOpen
   const tabs = [
     { id: 'home', label: 'Accueil' },
     { id: 'stats', label: 'Statistiques' },
-    { id: 'matches', label: 'Matchs & Vidéos' },
-    { id: 'infos', label: 'Infos & Discord' },
+    { id: 'matches', label: 'Matchs' },
+    { id: 'history', label: 'Notre Histoire' },
+    { id: 'infos', label: 'Infos' },
   ];
 
   return (
@@ -169,13 +172,13 @@ const Hero = ({ setActiveTab }) => (
       </div>
     </div>
     <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-900 flex items-center justify-center overflow-hidden">
-      {/* Abstract soccer field representation or placeholder image */}
       <img
-        className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-80"
-        src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-        alt="Football field"
+        className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+        src="./montreuilLock.jpg"
+        alt="Montreuil Lock Football"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ml-green to-transparent mix-blend-multiply"></div>
+      {/* Dégradé du vert vers la transparence pour laisser voir l'image sur la droite */}
+      <div className="absolute inset-0 bg-gradient-to-r from-ml-green via-ml-green/60 to-transparent lg:via-ml-green/40"></div>
     </div>
   </div>
 );
@@ -371,6 +374,108 @@ const MatchesSection = () => (
   </div>
 );
 
+const HistorySection = () => (
+  <div className="bg-white">
+    {/* Header Image */}
+    <div className="relative h-64 md:h-96 w-full overflow-hidden">
+        <img 
+            src="./montreuilLock.jpg" 
+            alt="L'équipe Montreuil Lock" 
+            className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight uppercase border-b-4 border-ml-green pb-2">Notre Histoire</h1>
+        </div>
+    </div>
+
+    <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        
+        {/* Intro */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-3xl font-bold text-ml-dark mb-6">De la passion au terrain</h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+                Tout a commencé par une simple discussion sur Discord. Une poignée de passionnés de football à Montreuil, cherchant un moyen d'organiser des matchs réguliers, compétitifs mais toujours dans un bon esprit. Ce qui n'était qu'un canal de discussion est devenu <strong>Montreuil Lock</strong>.
+            </p>
+        </div>
+
+        {/* Content Block 1 */}
+        <div className="flex flex-col md:flex-row items-center mb-24 gap-12">
+            <div className="w-full md:w-1/2 relative group">
+                <div className="absolute -inset-2 bg-ml-green rounded-xl opacity-30 group-hover:opacity-50 transition blur-lg"></div>
+                <img 
+                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    alt="Match de football" 
+                    className="relative rounded-xl shadow-2xl w-full h-64 md:h-80 object-cover"
+                />
+            </div>
+            <div className="w-full md:w-1/2">
+                <h3 className="text-2xl font-bold text-ml-green mb-4 flex items-center">
+                  <Star className="mr-2" size={24}/> L'Esprit du Samedi Matin
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                    Chaque samedi, entre 9h et 10h, le rituel est immuable. Peu importe la météo, peu importe le terrain, 22 joueurs se retrouvent pour s'affronter.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                    Notre force réside dans notre organisation : un système de vote rigoureux le lundi soir, des statistiques tenues à jour pour chaque joueur, et des vidéos pour revivre les meilleurs moments (et les ratés !).
+                </p>
+            </div>
+        </div>
+
+        {/* Content Block 2 (Reverse) */}
+        <div className="flex flex-col md:flex-row-reverse items-center mb-20 gap-12">
+            <div className="w-full md:w-1/2 relative group">
+                <div className="absolute -inset-2 bg-ml-dark rounded-xl opacity-30 group-hover:opacity-50 transition blur-lg"></div>
+                <img 
+                    src="https://images.unsplash.com/photo-1522778119026-d647f0565c6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    alt="Tactique et équipe" 
+                    className="relative rounded-xl shadow-2xl w-full h-64 md:h-80 object-cover"
+                />
+            </div>
+            <div className="w-full md:w-1/2">
+                <h3 className="text-2xl font-bold text-ml-green mb-4 flex items-center">
+                  <Heart className="mr-2" size={24}/> Une Communauté Soudée
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                    Au-delà du football, Montreuil Lock est une association d'amis. Le maillot vert et blanc représente nos valeurs : respect, dépassement de soi et convivialité.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                    Nous ne sommes pas juste une équipe de foot, nous sommes un collectif où chacun a sa place, du meilleur buteur au défenseur acharné.
+                </p>
+            </div>
+        </div>
+
+        {/* Values Grid */}
+        <div className="bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100 shadow-inner">
+            <h3 className="text-2xl font-bold text-center text-ml-dark mb-12">Nos Piliers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center group p-4 hover:bg-white rounded-xl transition hover:shadow-lg">
+                    <div className="w-16 h-16 bg-ml-light text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <TrendingUp size={32} />
+                    </div>
+                    <h4 className="font-bold text-xl mb-2 text-gray-800">Performance</h4>
+                    <p className="text-sm text-gray-500">Suivi des stats individuelles et collectives pour progresser à chaque match.</p>
+                </div>
+                <div className="text-center group p-4 hover:bg-white rounded-xl transition hover:shadow-lg">
+                    <div className="w-16 h-16 bg-ml-green text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <Users size={32} />
+                    </div>
+                    <h4 className="font-bold text-xl mb-2 text-gray-800">Communauté</h4>
+                    <p className="text-sm text-gray-500">Un Discord actif, de l'entraide et une ambiance bienveillante avant tout.</p>
+                </div>
+                <div className="text-center group p-4 hover:bg-white rounded-xl transition hover:shadow-lg">
+                    <div className="w-16 h-16 bg-ml-dark text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <Youtube size={32} />
+                    </div>
+                    <h4 className="font-bold text-xl mb-2 text-gray-800">Partage</h4>
+                    <p className="text-sm text-gray-500">Diffusion de nos matchs montés avec soin pour le plaisir du jeu et des souvenirs.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+);
+
 const InfoSection = () => (
   <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
     <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -507,6 +612,7 @@ const App = () => {
 
         {activeTab === 'stats' && <StatsSection />}
         {activeTab === 'matches' && <MatchesSection />}
+        {activeTab === 'history' && <HistorySection />}
         {activeTab === 'infos' && <InfoSection />}
       </div>
 
